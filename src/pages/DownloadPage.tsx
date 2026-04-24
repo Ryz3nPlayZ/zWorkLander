@@ -18,7 +18,7 @@ export default function DownloadPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#171716]">
+    <div className="relative min-h-screen bg-[#f7f6f3]">
       <TopBar visible={true} />
       <div ref={pageRef} className="pt-24">
         <DownloadSection />
