@@ -81,7 +81,7 @@ export function FeatureSection() {
             Capabilities
           </span>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#171716] max-w-3xl"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[#171716] max-w-3xl"
             style={serif}
           >
             AI that does real work on your machine
@@ -110,7 +110,7 @@ export function FeatureSection() {
                   <div className="h-[1px] w-8 bg-[#e6e3dc]" />
                 </div>
                 <h3
-                  className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-[#171716] max-w-3xl"
+                  className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#171716] max-w-3xl"
                   style={serif}
                 >
                   {feature.title}

@@ -9,9 +9,9 @@ export function Footer() {
       {/* CTA card */}
       <section className="bg-[#f7f6f3] px-6 pb-0">
         <div className="max-w-6xl mx-auto">
-          <div className="border border-[#e6e3dc] bg-[#171716] p-10 md:p-16 text-center">
+          <div className="rounded-3xl border border-[#e6e3dc] bg-[#171716] p-10 md:p-16 text-center">
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-[#f7f6f3]"
+              className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#f7f6f3]"
               style={serif}
             >
               Ready to get to work?
@@ -23,7 +23,7 @@ export function Footer() {
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/download"
-                className="inline-flex items-center gap-2 bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
               >
                 Download for free
               </Link>
@@ -31,7 +31,7 @@ export function Footer() {
                 href="https://github.com/Ryz3nPlayZ/zWork"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
               >
                 View on GitHub
               </a>
