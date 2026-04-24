@@ -192,7 +192,7 @@ export default function HomePage() {
         {/* Light layer — exact same content, inverted colors */}
         <div ref={heroLightRef} className="absolute inset-0 z-20 flex items-center justify-center" style={{ background: "#f7f6f3", clipPath: "inset(0 100% 0 0)" }}>
           <div ref={heroLightGroupRef} className="relative flex items-center justify-center will-change-transform">
-            <span ref={heroLightTextRef} className={`${bigText} text-[#171716]`} style={serif}>
+            <span ref={heroLightTextRef} className={`${bigText} text-[#171716] invisible`} style={serif}>
               <span className="lowercase">z</span>Work
             </span>
             <div ref={heroLightLogoRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 will-change-transform">
