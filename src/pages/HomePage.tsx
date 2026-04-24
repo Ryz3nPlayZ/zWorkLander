@@ -222,7 +222,7 @@ export default function HomePage() {
           <div className="relative w-full h-full flex items-center justify-center">
 
             {/* Word phrase (first 7 words only) */}
-            <div ref={narPhraseRef} className="absolute flex items-center justify-center gap-x-3 px-6">
+            <div ref={narPhraseRef} className="absolute flex items-center justify-center gap-x-3 px-6" style={{ top: "38%" }}>
               {["Stop","copying","and","pasting","your","work","into"].map((w) => (
                 <span key={w} className="word text-[32px] md:text-[48px] lg:text-[60px] font-semibold tracking-tight text-[#171716]" style={serif}>
                   {w}
