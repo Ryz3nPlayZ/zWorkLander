@@ -13,18 +13,21 @@ const platforms = [
     label: "macOS",
     cta: "Download for Mac",
     comingSoon: false,
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-macOS-universal.dmg",
   },
   {
     icon: Monitor,
     label: "Linux",
     cta: "Download for Linux",
     comingSoon: false,
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-linux.AppImage",
   },
   {
     icon: AppWindow,
     label: "Windows",
     cta: "Coming soon",
     comingSoon: true,
+    url: "#",
   },
 ];
 
@@ -64,6 +67,19 @@ export function DownloadSection() {
       className="relative z-50 bg-[#171716] py-16 md:py-24 px-6"
     >
       <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[#f7f6f3] max-w-3xl mx-auto"
+            style={serif}
+          >
+            Stop context-switching. Start shipping.
+          </h2>
+          <p className="mt-5 text-lg md:text-xl text-[#a09e98] max-w-2xl mx-auto leading-relaxed">
+            zWork is free and open source. Download once, connect your own keys,
+            and own your workflow end to end.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {platforms.map((p, i) => {
             const Icon = p.icon;
@@ -98,16 +114,22 @@ export function DownloadSection() {
                     ? "AppImage and DEB packages available."
                     : "Join the waitlist to get early access."}
                 </p>
-                <button
-                  disabled={p.comingSoon}
-                  className={`inline-flex items-center justify-center w-full rounded-full px-6 py-3.5 text-[14px] font-semibold transition-colors ${
-                    p.comingSoon
-                      ? "bg-[#2d2d31] text-[#6b6a65] cursor-not-allowed"
-                      : "bg-[#f7f6f3] text-[#171716] hover:bg-white"
-                  }`}
-                >
-                  {p.cta}
-                </button>
+                {p.comingSoon ? (
+                  <button
+                    disabled
+                    className="inline-flex items-center justify-center w-full rounded-full px-6 py-3.5 text-[14px] font-semibold transition-colors bg-[#2d2d31] text-[#6b6a65] cursor-not-allowed"
+                  >
+                    {p.cta}
+                  </button>
+                ) : (
+                  <a
+                    href={p.url}
+                    download
+                    className="inline-flex items-center justify-center w-full rounded-full px-6 py-3.5 text-[14px] font-semibold transition-colors bg-[#f7f6f3] text-[#171716] hover:bg-white"
+                  >
+                    {p.cta}
+                  </a>
+                )}
               </div>
             );
           })}
