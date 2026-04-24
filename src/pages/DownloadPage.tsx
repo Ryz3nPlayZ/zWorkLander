@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { DownloadSection } from "../components/DownloadSection";
-import { Logo } from "../components/Logo";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { TopBar } from "../components/TopBar";
 
 export default function DownloadPage() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -21,23 +19,8 @@ export default function DownloadPage() {
 
   return (
     <div className="relative min-h-screen bg-[#171716]">
-      {/* Nav */}
-      <nav className="relative z-50 flex items-center justify-between px-6 py-5 md:px-10">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-[13px] font-medium text-[#a09e98] hover:text-[#f7f6f3] transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
-          Back
-        </Link>
-        <div className="flex items-center gap-2">
-          <Logo size={22} fill="#f7f6f3" />
-          <span className="text-[14px] font-semibold text-[#f7f6f3] tracking-tight">zWork</span>
-        </div>
-        <div className="w-16" />
-      </nav>
-
-      <div ref={pageRef}>
+      <TopBar visible={true} />
+      <div ref={pageRef} className="pt-24">
         <DownloadSection />
       </div>
     </div>

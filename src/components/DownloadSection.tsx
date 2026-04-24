@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const serif = { fontFamily: "var(--font-serif)" };
 
 function AppleIcon({ className }: { className?: string }) {
   return (
@@ -25,7 +23,7 @@ function WindowsIcon({ className }: { className?: string }) {
 function LinuxIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025-.007.054-.029.083-.03.01.001.02.005.03.007.066.037.123.083.18.133.037.03.073.062.108.09.12.09.228.177.33.257.415.345.758.623 1.209.756.22.06.45.087.68.08.526-.02 1.074-.224 1.58-.474.782-.38 1.55-.868 2.058-1.526.413-.526.577-1.124.537-1.784-.058-.995-.597-2.087-1.224-2.956-.9-1.27-1.962-2.34-2.727-3.562-.48-.765-.773-1.612-.896-2.505-.124-.896.028-1.793.28-2.547.25-.753.607-1.379.902-1.912.391-.699.716-1.303.762-1.879.057-.736-.108-1.39-.522-1.959-.415-.569-1.073-.994-1.928-1.257-.855-.264-1.84-.36-2.8-.36-.28 0-.55.01-.81.03zm-1.896 4.717c.064-.008.15.002.253.037.207.071.457.226.698.475.242.249.47.582.627.967.158.385.247.828.22 1.28-.027.451-.16.876-.397 1.243-.237.367-.562.666-.931.858-.37.192-.772.274-1.16.241-.387-.032-.76-.17-1.05-.4-.29-.23-.497-.543-.6-.898-.1-.356-.1-.76.012-1.156.11-.396.335-.78.64-1.09.306-.31.686-.535 1.07-.633.192-.05.385-.074.578-.064zm5.824.009c.17.006.34.031.506.077.386.102.764.33 1.067.642.303.312.525.7.634 1.1.108.4.107.81.003 1.167-.104.356-.313.672-.606.903-.293.23-.669.369-1.057.401-.387.033-.79-.048-1.16-.24-.369-.192-.694-.491-.931-.858-.237-.367-.37-.792-.397-1.243-.027-.452.062-.895.22-1.28.157-.385.385-.718.627-.967.24-.25.49-.404.698-.475.102-.035.189-.045.253-.037.193-.01.386.014.578.064.384.098.764.323 1.07.633.305.31.53.694.64 1.09.112.396.112.8.012 1.156-.103.355-.31.668-.6.898-.29.23-.663.368-1.05.4-.388.033-.79-.049-1.16-.241-.369-.192-.694-.491-.931-.858-.237-.367-.37-.792-.397-1.243-.027-.452.062-.895.22-1.28.157-.385.385-.718.627-.967.24-.25.49-.404.698-.475.102-.035.189-.045.253-.037z" />
+      <path d="M12.076 2.116c-.233.01-.48.07-.72.186a2.17 2.17 0 0 0-.873.77c-.194.304-.308.683-.32 1.064-.012.38.074.76.255 1.08.18.32.448.575.77.738.322.162.692.224 1.06.176.366-.048.71-.212.98-.468.272-.257.455-.598.522-.97a2.25 2.25 0 0 0-.093-1.13 2.13 2.13 0 0 0-.63-.88c-.27-.234-.616-.38-.97-.39zM9.876 4.546c-.23.005-.45.038-.65.106-.307.1-.585.28-.804.52-.22.242-.375.54-.45.86a2.15 2.15 0 0 0 .086 1.1c.148.35.406.65.74.86.333.21.726.32 1.126.31.4-.01.786-.14 1.108-.37.322-.23.57-.556.706-.925.137-.37.156-.776.053-1.156a2.22 2.22 0 0 0-.49-.99 2.03 2.03 0 0 0-.878-.58 1.96 1.96 0 0 0-.548-.11zm5.704 2.52c.012 0 .025.003.037.006.15.04.28.13.36.26.08.13.1.29.06.44-.04.14-.14.27-.27.35-.13.08-.29.11-.44.08-.15-.03-.28-.12-.36-.25-.08-.13-.11-.29-.07-.44.04-.15.13-.28.26-.37.12-.09.27-.14.42-.14zM10.91 7.046c.14.002.28.048.39.13.11.08.19.2.22.34.03.13.01.28-.06.4-.07.12-.18.22-.31.26-.13.05-.28.04-.41-.02-.13-.06-.23-.17-.28-.3-.05-.14-.04-.29.03-.42.07-.13.19-.23.33-.28.1-.04.2-.06.3-.05.03 0 .06-.003.09-.006zm3.33 1.96c-.26.002-.51.06-.74.18-.23.12-.42.3-.56.51-.13.21-.2.46-.2.7v.02c0 .24.06.48.2.7.13.21.33.38.56.5.23.12.48.18.74.18.25 0 .5-.06.73-.18.23-.12.43-.29.56-.5.14-.21.2-.46.2-.7v-.02c0-.24-.06-.48-.2-.7-.13-.21-.33-.38-.56-.5a1.6 1.6 0 0 0-.73-.18zM9.04 9.206c-.25.002-.5.06-.72.18-.23.12-.42.3-.55.51-.14.21-.2.46-.2.7v.02c0 .24.06.48.2.7.13.21.32.38.55.5.22.12.47.18.72.18.26 0 .51-.06.74-.18.22-.12.42-.29.55-.5.14-.21.2-.46.2-.7v-.02c0-.24-.06-.48-.2-.7-.13-.21-.33-.38-.55-.5a1.62 1.62 0 0 0-.74-.18zm8.15.42c-.01.002-.02.005-.03.006-.15.03-.28.13-.36.26-.08.13-.1.29-.06.44.04.15.13.27.26.36.13.09.29.12.44.09.15-.03.28-.12.37-.25.08-.13.11-.29.07-.44-.04-.15-.13-.28-.26-.37-.13-.09-.29-.14-.43-.14zm-11.37.01c-.15.002-.29.06-.4.17-.1.1-.16.25-.16.4 0 .15.06.29.17.4.1.1.25.17.4.17.15 0 .29-.07.4-.17.1-.11.17-.25.17-.4 0-.15-.07-.3-.17-.4-.11-.11-.25-.17-.4-.17-.01 0-.03" />
     </svg>
   );
 }
@@ -34,171 +32,125 @@ const platforms = [
   {
     icon: AppleIcon,
     label: "macOS",
-    cta: "Download for Mac",
-    desc: "Universal binary for Intel & Apple Silicon",
+    cta: "Download",
+    desc: "Apple Silicon",
     comingSoon: false,
-    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-macOS-universal.dmg",
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-macos-aarch64.dmg",
+  },
+  {
+    icon: LinuxIcon,
+    label: "Linux",
+    cta: "Download",
+    desc: "x86_64 AppImage",
+    comingSoon: false,
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-linux-x86_64.AppImage",
   },
   {
     icon: WindowsIcon,
     label: "Windows",
     cta: "Coming soon",
-    desc: "Join the waitlist to get early access",
+    desc: "x86_64 installer",
     comingSoon: true,
     url: "#",
   },
-  {
-    icon: LinuxIcon,
-    label: "Linux",
-    cta: "Download for Linux",
-    desc: "AppImage and DEB packages available",
-    comingSoon: false,
-    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-linux.AppImage",
-  },
 ];
 
-function detectOS(): string {
-  const ua = navigator.userAgent;
-  if (ua.includes("Mac") && !ua.includes("Windows")) return "macOS";
-  if (ua.includes("Win")) return "Windows";
-  if (ua.includes("Linux")) return "Linux";
-  return "macOS";
-}
+const serif = { fontFamily: "var(--font-serif)" };
 
 export function DownloadSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [showAll, setShowAll] = useState(false);
-
-  const detected = useMemo(() => detectOS(), []);
-  const primary = platforms.find((p) => p.label === detected) || platforms[0];
-  const others = platforms.filter((p) => p.label !== detected);
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (!cardRef.current) return;
-      gsap.fromTo(
-        cardRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
+      itemsRef.current.forEach((item, i) => {
+        if (!item) return;
+        gsap.fromTo(
+          item,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+            delay: i * 0.15,
+          }
+        );
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-
-  const PrimaryIcon = primary.icon;
 
   return (
     <section
       id="download"
       ref={sectionRef}
-      className="relative z-50 bg-[#171716] py-16 md:py-24 px-6"
+      className="relative z-50 bg-[#171716] py-24 md:py-32 px-6"
     >
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[#f7f6f3]"
-            style={serif}
-          >
-            Get zWork
-          </h2>
-          <p className="mt-4 text-lg text-[#a09e98] max-w-xl mx-auto">
-            Free and open source. No signup required.
-          </p>
-        </div>
-
-        {/* Primary card — sharp corners */}
-        <div
-          ref={cardRef}
-          className="border border-[#2d2d31] bg-[#1c1c20] p-10 md:p-14 text-center"
+      <div className="max-w-5xl mx-auto text-center">
+        <h2
+          className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[#f7f6f3] mb-4"
+          style={serif}
         >
-          <PrimaryIcon className="h-12 w-12 text-[#f7f6f3] mx-auto mb-6" />
-          <h3
-            className="text-3xl md:text-4xl font-semibold tracking-tight text-[#f7f6f3] mb-2"
-            style={serif}
-          >
-            {primary.label}
-          </h3>
-          <p className="text-[15px] text-[#a09e98] mb-8">{primary.desc}</p>
+          Download zWork
+        </h2>
+        <p className="text-lg text-[#a09e98] mb-20">
+          Free and open source. No signup required.
+        </p>
 
-          {primary.comingSoon ? (
-            <button
-              disabled
-              className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3.5 text-[14px] font-semibold bg-[#2d2d31] text-[#6b6a65] cursor-not-allowed"
-            >
-              {primary.cta}
-            </button>
-          ) : (
-            <a
-              href={primary.url}
-              download
-              className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3.5 text-[14px] font-semibold bg-[#f7f6f3] text-[#171716] hover:bg-white transition-colors"
-            >
-              {primary.cta}
-            </a>
-          )}
+        <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0">
+          {platforms.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <div
+                key={p.label}
+                ref={(el) => { itemsRef.current[i] = el; }}
+                className="flex-1 flex flex-col items-center py-12 px-8 md:px-12"
+              >
+                <Icon className="h-10 w-10 text-[#f7f6f3] mb-6" />
+                <h3
+                  className="text-3xl md:text-4xl font-semibold tracking-tight text-[#f7f6f3] mb-2"
+                  style={serif}
+                >
+                  {p.label}
+                </h3>
+                <p className="text-[14px] text-[#a09e98] mb-8">{p.desc}</p>
 
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="block mx-auto mt-6 text-[13px] text-[#a09e98] hover:text-[#f7f6f3] transition-colors"
-          >
-            {showAll ? "Hide other platforms" : "More options"}
-          </button>
+                {p.comingSoon ? (
+                  <span className="text-[13px] font-medium text-[#6b6a65]">
+                    {p.cta}
+                  </span>
+                ) : (
+                  <a
+                    href={p.url}
+                    download
+                    className="inline-flex items-center px-6 py-3 text-[13px] font-semibold bg-[#f7f6f3] text-[#171716] hover:bg-white transition-colors"
+                  >
+                    {p.cta}
+                  </a>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Vertical dividers */}
+          <div className="hidden md:block absolute left-1/3 top-24 bottom-24 w-[1px] bg-[#2d2d31]" />
+          <div className="hidden md:block absolute left-2/3 top-24 bottom-24 w-[1px] bg-[#2d2d31]" />
         </div>
 
-        {/* Other platforms — sharp corners */}
-        {showAll && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            {others.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div
-                  key={p.label}
-                  className="border border-[#2d2d31] bg-[#1c1c20] p-8 text-center"
-                >
-                  <Icon className="h-8 w-8 text-[#f7f6f3] mx-auto mb-4" />
-                  <h4
-                    className="text-xl font-semibold tracking-tight text-[#f7f6f3] mb-1"
-                    style={serif}
-                  >
-                    {p.label}
-                  </h4>
-                  <p className="text-[13px] text-[#a09e98] mb-5">{p.desc}</p>
-                  {p.comingSoon ? (
-                    <span className="text-[13px] text-[#6b6a65]">{p.cta}</span>
-                  ) : (
-                    <a
-                      href={p.url}
-                      download
-                      className="inline-flex items-center px-5 py-2.5 text-[13px] font-semibold bg-[#f7f6f3] text-[#171716] hover:bg-white transition-colors"
-                    >
-                      {p.cta}
-                    </a>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        <div className="mt-12 text-center">
+        <div className="mt-20">
           <a
-            href="https://github.com/Ryz3nPlayZ/zWork"
+            href="https://github.com/Ryz3nPlayZ/zWork/releases"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-[#2d2d31] px-5 py-2.5 text-[13px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
+            className="text-[13px] text-[#a09e98] hover:text-[#f7f6f3] transition-colors"
           >
-            Build from source
+            View all releases on GitHub
           </a>
         </div>
       </div>
