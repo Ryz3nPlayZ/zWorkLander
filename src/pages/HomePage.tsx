@@ -1,15 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Logo } from "../components/Logo";
 import { FeatureSection } from "../components/FeatureSection";
+import { PricingSection } from "../components/PricingSection";
 import { Footer } from "../components/Footer";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const serif = { fontFamily: "var(--font-serif)" };
 
 export default function HomePage() {
+  const [showNav, setShowNav] = useState(false);
+
   /* ---------- HERO ---------- */
   const heroRef = useRef<HTMLDivElement>(null);
   const heroGroupRef = useRef<HTMLDivElement>(null);
@@ -31,6 +35,7 @@ export default function HomePage() {
   const narFinalRef = useRef<HTMLDivElement>(null);
   const narStealRef = useRef<HTMLDivElement>(null);
   const narBgRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -166,12 +171,20 @@ export default function HomePage() {
       narTl.to(steal, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" }, 4.05);
 
       // 4.20 - 5.00: hold on both texts
+
+      /* ---- Sticky nav trigger ---- */
+      ScrollTrigger.create({
+        trigger: sentinelRef.current,
+        start: "top top",
+        onEnter: () => setShowNav(true),
+        onLeaveBack: () => setShowNav(false),
+      });
     });
 
     return () => ctx.revert();
   }, []);
 
-  const bigText = "text-[100px] md:text-[140px] lg:text-[190px] font-semibold tracking-tighter select-none";
+  const bigText = "text-[100px] md:text-[140px] lg:text-[190px] font-normal tracking-tighter select-none";
 
   return (
     <div className="relative">
@@ -224,7 +237,7 @@ export default function HomePage() {
             {/* Word phrase (first 7 words only) */}
             <div ref={narPhraseRef} className="absolute flex items-center justify-center gap-x-3 px-6" style={{ top: "38%" }}>
               {["Stop","copying","and","pasting","your","work","into"].map((w) => (
-                <span key={w} className="word text-[32px] md:text-[48px] lg:text-[60px] font-semibold tracking-tight text-[#171716]" style={serif}>
+                <span key={w} className="word text-[32px] md:text-[48px] lg:text-[60px] font-normal tracking-tight text-[#171716]" style={serif}>
                   {w}
                 </span>
               ))}
@@ -232,35 +245,35 @@ export default function HomePage() {
 
             {/* chatgpt — centered, absolute */}
             <div ref={narChatgptRef} className="absolute inset-0 flex items-center justify-center opacity-0 z-10">
-              <span className="text-[32px] md:text-[48px] lg:text-[60px] font-semibold tracking-tight text-[#171716]" style={serif}>
+              <span className="text-[32px] md:text-[48px] lg:text-[60px] font-normal tracking-tight text-[#171716]" style={serif}>
                 chatgpt
               </span>
             </div>
 
             {/* let zWork do it instead — light */}
             <div ref={narInsteadLightRef} className="absolute flex items-center justify-center opacity-0 text-center px-6">
-              <span className="text-[56px] md:text-[80px] lg:text-[110px] font-semibold tracking-tighter text-[#171716] leading-tight" style={serif}>
+              <span className="text-[56px] md:text-[80px] lg:text-[110px] font-normal tracking-tighter text-[#171716] leading-tight" style={serif}>
                 let <span className="lowercase">z</span>Work<br />do it instead
               </span>
             </div>
 
             {/* let zWork do it instead — dark */}
             <div ref={narInsteadDarkRef} className="absolute flex items-center justify-center opacity-0 text-center px-6">
-              <span className="text-[56px] md:text-[80px] lg:text-[110px] font-semibold tracking-tighter text-[#f7f6f3] leading-tight" style={serif}>
+              <span className="text-[56px] md:text-[80px] lg:text-[110px] font-normal tracking-tighter text-[#f7f6f3] leading-tight" style={serif}>
                 let <span className="lowercase">z</span>Work<br />do it instead
               </span>
             </div>
 
             {/* Final */}
             <div ref={narFinalRef} className="absolute flex items-center justify-center opacity-0 text-center px-6">
-              <span className="text-[36px] md:text-[52px] lg:text-[68px] font-semibold tracking-tight text-[#f7f6f3] leading-tight" style={serif}>
+              <span className="text-[36px] md:text-[52px] lg:text-[68px] font-normal tracking-tight text-[#f7f6f3] leading-tight" style={serif}>
                 Private.<br />Free and open source.
               </span>
             </div>
 
             {/* Steal data punchline */}
             <div ref={narStealRef} className="absolute flex items-center justify-center opacity-0 text-center px-6" style={{ top: "58%" }}>
-              <span className="text-[24px] md:text-[32px] lg:text-[40px] font-semibold tracking-tight text-[#a09e98] leading-tight" style={serif}>
+              <span className="text-[24px] md:text-[32px] lg:text-[40px] font-normal tracking-tight text-[#a09e98] leading-tight" style={serif}>
                 that means I cant steal your data
               </span>
             </div>
@@ -269,7 +282,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div ref={sentinelRef} className="h-[1px]" />
+
+      {/* STICKY TOPBAR */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[100] border-b border-[#e6e3dc] bg-[#f7f6f3] px-6 py-4 md:px-10 transition-transform duration-300 ${showNav ? "translate-y-0" : "-translate-y-full"}`}
+      >
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2">
+            <Logo size={20} fill="#171716" />
+            <span className="text-[13px] font-semibold tracking-tight text-[#171716]">
+              <span className="lowercase">z</span>Work
+            </span>
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-[#6b6a65]">
+            <Link to="/download" className="hover:text-[#171716] transition-colors">Download</Link>
+            <a href="#pricing" className="hover:text-[#171716] transition-colors">Pricing</a>
+          </nav>
+          <Link
+            to="/download"
+            className="inline-flex items-center px-4 py-2 text-[12px] font-semibold bg-[#171716] text-[#f7f6f3] hover:bg-[#25241f] transition-colors"
+          >
+            Get zWork
+          </Link>
+        </div>
+      </header>
+
       <FeatureSection />
+      <PricingSection />
       <Footer />
     </div>
   );
