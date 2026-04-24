@@ -86,10 +86,10 @@ export function PricingSection() {
     <section
       id="pricing"
       ref={sectionRef}
-      className="relative z-50 bg-[#f7f6f3] py-28 md:py-36 px-6"
+      className="relative z-50 bg-[#f7f6f3] py-12 md:py-16 px-6"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-8 md:mb-10">
           <h2
             className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[#171716]"
             style={serif}
@@ -117,9 +117,9 @@ export function PricingSection() {
               <div className="text-4xl font-semibold text-[#171716] mb-1 group-hover:text-[#f7f6f3] transition-colors duration-300">
                 {tier.price}
               </div>
-              <p className="text-[13px] text-[#a09e98] mb-8 group-hover:text-[#a09e98]">{tier.subtitle}</p>
+              <p className="text-[13px] text-[#a09e98] mb-6">{tier.subtitle}</p>
 
-              <ul className="space-y-3 text-left mb-10 flex-1">
+              <ul className="space-y-2 text-left mb-6 flex-1">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-[14px] text-[#171716] group-hover:text-[#f7f6f3] transition-colors duration-300">
                     <Check className="h-4 w-4 text-[#6b6a65] mt-0.5 shrink-0 group-hover:text-[#f7f6f3] transition-colors duration-300" strokeWidth={2} />

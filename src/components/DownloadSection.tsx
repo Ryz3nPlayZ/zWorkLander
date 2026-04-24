@@ -90,7 +90,7 @@ export function DownloadSection() {
     <section
       id="download"
       ref={sectionRef}
-      className="relative z-50 bg-[#171716] py-24 md:py-32 px-6"
+      className="relative z-50 bg-[#171716] py-12 md:py-16 px-6"
     >
       <div className="max-w-5xl mx-auto text-center">
         <h2
@@ -99,7 +99,7 @@ export function DownloadSection() {
         >
           Download zWork
         </h2>
-        <p className="text-lg text-[#a09e98] mb-20">
+        <p className="text-lg text-[#a09e98] mb-12">
           Free and open source. No signup required.
         </p>
 
@@ -110,16 +110,16 @@ export function DownloadSection() {
               <div
                 key={p.label}
                 ref={(el) => { itemsRef.current[i] = el; }}
-                className="flex-1 flex flex-col items-center py-12 px-8 md:px-12"
+                className="flex-1 flex flex-col items-center py-8 px-6 md:px-10"
               >
-                <Icon className="h-10 w-10 text-[#f7f6f3] mb-6" />
+                <Icon className="h-8 w-8 text-[#f7f6f3] mb-4" />
                 <h3
                   className="text-3xl md:text-4xl font-semibold tracking-tight text-[#f7f6f3] mb-2"
                   style={serif}
                 >
                   {p.label}
                 </h3>
-                <p className="text-[14px] text-[#a09e98] mb-8">{p.desc}</p>
+                <p className="text-[14px] text-[#a09e98] mb-6">{p.desc}</p>
 
                 {p.comingSoon ? (
                   <span className="text-[13px] font-medium text-[#6b6a65]">
@@ -143,7 +143,7 @@ export function DownloadSection() {
           <div className="hidden md:block absolute left-2/3 top-24 bottom-24 w-[1px] bg-[#2d2d31]" />
         </div>
 
-        <div className="mt-20">
+        <div className="mt-12">
           <a
             href="https://github.com/Ryz3nPlayZ/zWork/releases"
             target="_blank"

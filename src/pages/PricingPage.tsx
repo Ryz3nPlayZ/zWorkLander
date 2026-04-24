@@ -20,7 +20,7 @@ export default function PricingPage() {
   return (
     <div className="relative min-h-screen bg-[#f7f6f3]">
       <TopBar visible={true} />
-      <div ref={pageRef} className="pt-24">
+      <div ref={pageRef} className="pt-20">
         <PricingSection />
       </div>
     </div>
