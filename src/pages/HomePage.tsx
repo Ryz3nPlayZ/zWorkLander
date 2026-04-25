@@ -193,15 +193,10 @@ export default function HomePage() {
         ease: "power2.inOut"
       }, 5.0);
 
-      // 5.30 - 6.00: dark bg morphs into CTA card (shrinks and adds rounded corners + border)
+      // 5.30 - 6.00: dark bg morphs into CTA card using scale from center
+      narTl.set(bg, { transformOrigin: "center center" }, 5.3);
       narTl.to(bg, {
-        height: "auto",
-        minHeight: "400px",
-        top: "50%",
-        marginTop: "-200px",
-        width: "90%",
-        maxWidth: "800px",
-        marginLeft: "-45%",
+        scale: 0.5,
         borderRadius: "24px",
         border: "1px solid #e6e3dc",
         duration: 0.7,
