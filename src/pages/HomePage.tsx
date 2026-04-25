@@ -197,7 +197,7 @@ export default function HomePage() {
       narTl.set(bg, { transformOrigin: "center center" }, 5.3);
       narTl.to(bg, {
         scale: 0.5,
-        borderRadius: "24px",
+        borderRadius: "40px",
         border: "1px solid #e6e3dc",
         duration: 0.7,
         ease: "power2.inOut"
@@ -375,6 +375,21 @@ export default function HomePage() {
       <div ref={sentinelRef} className="h-[1px]" />
 
       <TopBar visible={showNav} />
+
+      {/* Subtle download CTA bar */}
+      <div className="border-b border-[#e6e3dc] bg-[#f7f6f3]">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+          <span className="text-[13px] text-[#6b6a65]">
+            Ready to get to work?
+          </span>
+          <Link
+            to="/download"
+            className="text-[13px] font-semibold text-[#171716] hover:text-[#6b6a65] transition-colors"
+          >
+            Download zWork →
+          </Link>
+        </div>
+      </div>
 
       <Footer />
     </div>
