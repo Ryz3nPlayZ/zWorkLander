@@ -350,6 +350,12 @@ export default function HomePage() {
                   >
                     Download for free
                   </Link>
+                  <Link
+                    to="/pricing"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
+                  >
+                    Pricing
+                  </Link>
                   <a
                     href="https://github.com/Ryz3nPlayZ/zWork"
                     target="_blank"
