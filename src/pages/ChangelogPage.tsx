@@ -126,6 +126,21 @@ export default function ChangelogPage() {
     <div ref={pageRef} className="relative min-h-screen bg-[#f7f6f3]">
       <TopBar visible={true} />
 
+      {/* Subtle CTA banner */}
+      <div className="border-b border-[#e6e3dc] bg-[#f7f6f3]">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+          <span className="text-[13px] text-[#6b6a65]">
+            New to zWork? Download for free and start shipping faster.
+          </span>
+          <Link
+            to="/download"
+            className="text-[13px] font-semibold text-[#171716] hover:text-[#6b6a65] transition-colors"
+          >
+            Download →
+          </Link>
+        </div>
+      </div>
+
       <section className="relative z-50 bg-[#f7f6f3] pt-32 md:pt-40 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
