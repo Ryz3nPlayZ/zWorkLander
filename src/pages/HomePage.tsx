@@ -36,9 +36,8 @@ export default function HomePage() {
   const narBgRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  /* ---------- CTA CARD ---------- */
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const ctaBgRef = useRef<HTMLDivElement>(null);
+  /* ---------- CTA (inside narrative) ---------- */
+  const ctaContentRef = useRef<HTMLDivElement>(null);
   const ctaTitleRef = useRef<HTMLHeadingElement>(null);
   const ctaDescRef = useRef<HTMLParagraphElement>(null);
   const ctaButtonsRef = useRef<HTMLDivElement>(null);
@@ -113,19 +112,27 @@ export default function HomePage() {
       const final = narFinalRef.current;
       const steal = narStealRef.current;
       const bg = narBgRef.current;
-      if (!words || !chatgptEl || !insteadLight || !steal) return;
+      const ctaContent = ctaContentRef.current;
+      const ctaTitle = ctaTitleRef.current;
+      const ctaDesc = ctaDescRef.current;
+      const ctaButtons = ctaButtonsRef.current;
+
+      if (!words || !chatgptEl || !insteadLight || !steal || !bg || !ctaContent) return;
 
       gsap.set(chatgptEl, { autoAlpha: 0, scale: 1 });
       gsap.set(insteadLight, { autoAlpha: 0 });
       gsap.set(insteadDark, { autoAlpha: 0 });
       gsap.set(final, { autoAlpha: 0, y: 30 });
       gsap.set(steal, { autoAlpha: 0, y: 20 });
+      // Hide CTA initially
+      gsap.set(ctaContent, { autoAlpha: 0 });
+      gsap.set([ctaTitle, ctaDesc, ctaButtons], { autoAlpha: 0, y: 15 });
 
       const narTl = gsap.timeline({
         scrollTrigger: {
           trigger: narRef.current,
           start: "top top",
-          end: "+=1200%",
+          end: "+=1600%",
           pin: true,
           scrub: 0.7,
         },
@@ -181,40 +188,39 @@ export default function HomePage() {
       // 5.00 - 5.30: blur/fade out steal and final text
       narTl.to([steal, final], {
         autoAlpha: 0,
-        filter: "blur(10px)",
+        filter: "blur(8px)",
         duration: 0.4,
         ease: "power2.inOut"
       }, 5.0);
 
-      // 5.30 - 5.80: CTA card morphs in from the dark bg
-      narTl.fromTo(ctaBgRef.current,
-        { scale: 1, borderRadius: "0px" },
-        { scale: 1, borderRadius: "24px", duration: 0.5, ease: "power2.inOut" },
-        5.35
-      );
+      // 5.30 - 6.00: dark bg morphs into CTA card (shrinks and adds rounded corners + border)
+      narTl.to(bg, {
+        height: "auto",
+        minHeight: "400px",
+        top: "50%",
+        marginTop: "-200px",
+        width: "90%",
+        maxWidth: "800px",
+        marginLeft: "-45%",
+        borderRadius: "24px",
+        border: "1px solid #e6e3dc",
+        duration: 0.7,
+        ease: "power2.inOut"
+      }, 5.35);
 
-      // 5.60 - 5.90: title fades in
-      narTl.fromTo(ctaTitleRef.current,
-        { autoAlpha: 0, y: 20 },
-        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
-        5.65
-      );
+      // 5.60 - 5.90: show CTA content container
+      narTl.to(ctaContent, { autoAlpha: 1, duration: 0.3, ease: "power2.out" }, 5.65);
 
-      // 5.75 - 6.05: description fades in
-      narTl.fromTo(ctaDescRef.current,
-        { autoAlpha: 0, y: 15 },
-        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
-        5.8
-      );
+      // 5.75 - 6.05: title fades in
+      narTl.to(ctaTitle, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 5.8);
 
-      // 5.90 - 6.20: buttons fade in
-      narTl.fromTo(ctaButtonsRef.current,
-        { autoAlpha: 0, y: 10 },
-        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
-        5.95
-      );
+      // 5.90 - 6.20: description fades in
+      narTl.to(ctaDesc, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 5.95);
 
-      // 6.20 - 7.00: hold on CTA
+      // 6.05 - 6.35: buttons fade in
+      narTl.to(ctaButtons, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 6.1);
+
+      // 6.35 - 7.00: hold on CTA
 
       /* ---- Sticky nav trigger ---- */
       ScrollTrigger.create({
@@ -272,10 +278,10 @@ export default function HomePage() {
       <section ref={narRef} className="relative h-screen w-full overflow-hidden">
         {/* Light bg */}
         <div className="absolute inset-0 z-0" style={{ background: "#f7f6f3" }} />
-        {/* Dark bg (fades in) */}
-        <div ref={narBgRef} className="absolute inset-0 z-0 opacity-0" style={{ background: "#171716" }} />
+        {/* Dark bg (fades in then morphs into CTA card) */}
+        <div ref={narBgRef} className="absolute inset-0 z-10 opacity-0 will-change-transform" style={{ background: "#171716" }} />
 
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
           <div className="relative w-full h-full flex items-center justify-center">
 
             {/* Word phrase (first 7 words only) */}
@@ -322,6 +328,45 @@ export default function HomePage() {
               </span>
             </div>
 
+            {/* CTA CONTENT - hidden initially, appears when bg morphs */}
+            <div ref={ctaContentRef} className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none">
+              <div className="text-center max-w-xl w-full pointer-events-auto">
+                <h2
+                  ref={ctaTitleRef}
+                  className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#f7f6f3] leading-tight"
+                  style={serif}
+                >
+                  Ready to get to work?
+                </h2>
+                <p
+                  ref={ctaDescRef}
+                  className="mt-4 text-[15px] text-[#a09e98] max-w-lg mx-auto leading-relaxed"
+                >
+                  zWork runs locally on macOS, Windows, and Linux. Free to use with
+                  your own API keys.
+                </p>
+                <div
+                  ref={ctaButtonsRef}
+                  className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+                >
+                  <Link
+                    to="/download"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
+                  >
+                    Download for free
+                  </Link>
+                  <a
+                    href="https://github.com/Ryz3nPlayZ/zWork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -329,50 +374,6 @@ export default function HomePage() {
       <div ref={sentinelRef} className="h-[1px]" />
 
       <TopBar visible={showNav} />
-
-      {/* CTA CARD SECTION */}
-      <section ref={ctaRef} className="relative z-40 bg-[#f7f6f3] px-6 py-0">
-        <div className="max-w-6xl mx-auto pb-16 pt-0">
-          <div
-            ref={ctaBgRef}
-            className="rounded-3xl border border-[#e6e3dc] bg-[#171716] p-10 md:p-16 text-center opacity-0"
-          >
-            <h2
-              ref={ctaTitleRef}
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#f7f6f3] opacity-0"
-              style={serif}
-            >
-              Ready to get to work?
-            </h2>
-            <p
-              ref={ctaDescRef}
-              className="mt-4 text-[15px] text-[#a09e98] max-w-lg mx-auto leading-relaxed opacity-0"
-            >
-              zWork runs locally on macOS, Windows, and Linux. Free to use with
-              your own API keys.
-            </p>
-            <div
-              ref={ctaButtonsRef}
-              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0"
-            >
-              <Link
-                to="/download"
-                className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
-              >
-                Download for free
-              </Link>
-              <a
-                href="https://github.com/Ryz3nPlayZ/zWork"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
-              >
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>
