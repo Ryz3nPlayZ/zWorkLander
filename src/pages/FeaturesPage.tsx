@@ -148,11 +148,11 @@ export default function FeaturesPage() {
             </span>
           </div>
           <div className="flex items-center gap-6 text-[12.5px] text-[#6b6a65]">
+            <Link to="/changelog" className="hover:text-[#171716] transition-colors">
+              Changelog
+            </Link>
             <a href="#" className="hover:text-[#171716] transition-colors">
               Documentation
-            </a>
-            <a href="#" className="hover:text-[#171716] transition-colors">
-              Changelog
             </a>
             <a
               href="https://github.com/Ryz3nPlayZ/zWork"
