@@ -331,11 +331,11 @@ export default function HomePage() {
       <TopBar visible={showNav} />
 
       {/* CTA CARD SECTION */}
-      <section ref={ctaRef} className="relative z-40 bg-[#171716] px-6 py-0">
+      <section ref={ctaRef} className="relative z-40 bg-[#f7f6f3] px-6 py-0">
         <div className="max-w-6xl mx-auto pb-16 pt-0">
           <div
             ref={ctaBgRef}
-            className="rounded-3xl border border-[#2d2d31] bg-[#171716] p-10 md:p-16 text-center opacity-0"
+            className="rounded-3xl border border-[#e6e3dc] bg-[#171716] p-10 md:p-16 text-center opacity-0"
           >
             <h2
               ref={ctaTitleRef}
