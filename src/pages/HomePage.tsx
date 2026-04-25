@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Logo } from "../components/Logo";
-import { FeatureSection } from "../components/FeatureSection";
 import { Footer } from "../components/Footer";
 import { TopBar } from "../components/TopBar";
 
@@ -35,6 +35,13 @@ export default function HomePage() {
   const narStealRef = useRef<HTMLDivElement>(null);
   const narBgRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  /* ---------- CTA CARD ---------- */
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const ctaBgRef = useRef<HTMLDivElement>(null);
+  const ctaTitleRef = useRef<HTMLHeadingElement>(null);
+  const ctaDescRef = useRef<HTMLParagraphElement>(null);
+  const ctaButtonsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -171,6 +178,44 @@ export default function HomePage() {
 
       // 4.20 - 5.00: hold on both texts
 
+      // 5.00 - 5.30: blur/fade out steal and final text
+      narTl.to([steal, final], {
+        autoAlpha: 0,
+        filter: "blur(10px)",
+        duration: 0.4,
+        ease: "power2.inOut"
+      }, 5.0);
+
+      // 5.30 - 5.80: CTA card morphs in from the dark bg
+      narTl.fromTo(ctaBgRef.current,
+        { scale: 1, borderRadius: "0px" },
+        { scale: 1, borderRadius: "24px", duration: 0.5, ease: "power2.inOut" },
+        5.35
+      );
+
+      // 5.60 - 5.90: title fades in
+      narTl.fromTo(ctaTitleRef.current,
+        { autoAlpha: 0, y: 20 },
+        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
+        5.65
+      );
+
+      // 5.75 - 6.05: description fades in
+      narTl.fromTo(ctaDescRef.current,
+        { autoAlpha: 0, y: 15 },
+        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
+        5.8
+      );
+
+      // 5.90 - 6.20: buttons fade in
+      narTl.fromTo(ctaButtonsRef.current,
+        { autoAlpha: 0, y: 10 },
+        { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" },
+        5.95
+      );
+
+      // 6.20 - 7.00: hold on CTA
+
       /* ---- Sticky nav trigger ---- */
       ScrollTrigger.create({
         trigger: sentinelRef.current,
@@ -285,7 +330,50 @@ export default function HomePage() {
 
       <TopBar visible={showNav} />
 
-      <FeatureSection />
+      {/* CTA CARD SECTION */}
+      <section ref={ctaRef} className="relative z-40 bg-[#171716] px-6 py-0">
+        <div className="max-w-6xl mx-auto pb-16 pt-0">
+          <div
+            ref={ctaBgRef}
+            className="rounded-3xl border border-[#2d2d31] bg-[#171716] p-10 md:p-16 text-center opacity-0"
+          >
+            <h2
+              ref={ctaTitleRef}
+              className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#f7f6f3] opacity-0"
+              style={serif}
+            >
+              Ready to get to work?
+            </h2>
+            <p
+              ref={ctaDescRef}
+              className="mt-4 text-[15px] text-[#a09e98] max-w-lg mx-auto leading-relaxed opacity-0"
+            >
+              zWork runs locally on macOS, Windows, and Linux. Free to use with
+              your own API keys.
+            </p>
+            <div
+              ref={ctaButtonsRef}
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0"
+            >
+              <Link
+                to="/download"
+                className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
+              >
+                Download for free
+              </Link>
+              <a
+                href="https://github.com/Ryz3nPlayZ/zWork"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
