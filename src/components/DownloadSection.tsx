@@ -33,9 +33,9 @@ const platforms = [
     icon: AppleIcon,
     label: "macOS",
     cta: "Download",
-    desc: "Apple Silicon",
+    desc: "Universal",
     comingSoon: false,
-    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-macos-aarch64.dmg",
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-macos-universal.dmg",
   },
   {
     icon: LinuxIcon,
@@ -48,10 +48,10 @@ const platforms = [
   {
     icon: WindowsIcon,
     label: "Windows",
-    cta: "Coming soon",
+    cta: "Download",
     desc: "x86_64 installer",
-    comingSoon: true,
-    url: "#",
+    comingSoon: false,
+    url: "https://github.com/Ryz3nPlayZ/zWork/releases/latest/download/zWork-windows-x86_64-setup.exe",
   },
 ];
 
