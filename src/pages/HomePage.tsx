@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { track } from "@vercel/analytics";
 import { Logo } from "../components/Logo";
 import { Footer } from "../components/Footer";
 import { TopBar } from "../components/TopBar";
@@ -17,10 +18,10 @@ export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroGroupRef = useRef<HTMLDivElement>(null);
   const heroLogoRef = useRef<HTMLDivElement>(null);
-  const heroTextRef = useRef<HTMLSpanElement>(null);
+  const heroTextRef = useRef<HTMLHeadingElement>(null);
   const heroLightGroupRef = useRef<HTMLDivElement>(null);
   const heroLightLogoRef = useRef<HTMLDivElement>(null);
-  const heroLightTextRef = useRef<HTMLSpanElement>(null);
+  const heroLightTextRef = useRef<HTMLDivElement>(null);
   const heroLightRef = useRef<HTMLDivElement>(null);
   const heroScanRef = useRef<HTMLDivElement>(null);
   const heroHintRef = useRef<HTMLDivElement>(null);
@@ -238,9 +239,9 @@ export default function HomePage() {
         {/* Dark layer */}
         <div className="absolute inset-0 z-10 flex items-center justify-center" style={{ background: "#171716" }}>
           <div ref={heroGroupRef} className="relative flex items-center justify-center will-change-transform">
-            <span ref={heroTextRef} className={`${bigText} text-[#f7f6f3]`} style={serif}>
+            <h1 ref={heroTextRef} className={`${bigText} text-[#f7f6f3]`} style={serif}>
               <span className="lowercase">z</span>Work
-            </span>
+            </h1>
             <div ref={heroLogoRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 will-change-transform">
               <Logo size={280} fill="#f7f6f3" />
             </div>
@@ -250,9 +251,9 @@ export default function HomePage() {
         {/* Light layer — exact same content, inverted colors */}
         <div ref={heroLightRef} className="absolute inset-0 z-20 flex items-center justify-center" style={{ background: "#f7f6f3", clipPath: "inset(0 100% 0 0)" }}>
           <div ref={heroLightGroupRef} className="relative flex items-center justify-center will-change-transform">
-            <span ref={heroLightTextRef} className={`${bigText} text-[#171716] invisible`} style={serif}>
+            <div ref={heroLightTextRef} className={`${bigText} text-[#171716] invisible`} style={serif} aria-hidden="true">
               <span className="lowercase">z</span>Work
-            </span>
+            </div>
             <div ref={heroLightLogoRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 will-change-transform">
               <Logo size={280} fill="#171716" />
             </div>
@@ -263,10 +264,10 @@ export default function HomePage() {
         <div ref={heroScanRef} className="absolute top-0 bottom-0 z-30 w-[2px] md:w-[3px] pointer-events-none opacity-0" style={{ left: "-5%", background: "rgba(247,246,243,0.9)", boxShadow: "-6px 0 24px rgba(247,246,243,0.5),6px 0 24px rgba(23,23,22,0.4),0 0 60px rgba(247,246,243,0.25)", mixBlendMode: "screen" }} />
 
         {/* Scroll hint */}
-        <div ref={heroHintRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2">
+        <aside ref={heroHintRef} aria-label="Scroll down hint" className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2">
           <span className="text-[11px] tracking-[0.2em] uppercase text-[#6b6a65]">Scroll</span>
           <div className="h-8 w-[1px] bg-[#6b6a65] animate-pulse" />
-        </div>
+        </aside>
       </section>
 
       {/* NARRATIVE SECTION */}
@@ -316,10 +317,10 @@ export default function HomePage() {
               </span>
             </div>
 
-            {/* Steal data punchline */}
+            {/* Private by design punchline */}
             <div ref={narStealRef} className="absolute flex items-center justify-center opacity-0 text-center px-6" style={{ top: "58%" }}>
               <span className="text-[24px] md:text-[32px] lg:text-[40px] font-semibold tracking-tight text-[#a09e98] leading-tight" style={serif}>
-                that means I cant steal your data
+                Your data never leaves your machine. Private by design.
               </span>
             </div>
 
@@ -346,12 +347,14 @@ export default function HomePage() {
                 >
                   <Link
                     to="/download"
+                    onClick={() => track('home_download_click')}
                     className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-6 py-3 text-[14px] font-semibold text-[#171716] hover:bg-white transition-colors"
                   >
                     Download for free
                   </Link>
                   <Link
                     to="/pricing"
+                    onClick={() => track('home_pricing_click')}
                     className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
                   >
                     Pricing
@@ -360,6 +363,7 @@ export default function HomePage() {
                     href="https://github.com/Ryz3nPlayZ/zWork"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => track('home_github_click')}
                     className="inline-flex items-center gap-2 rounded-full border border-[#2d2d31] px-6 py-3 text-[14px] font-medium text-[#a09e98] hover:text-[#f7f6f3] hover:border-[#4a4a4e] transition-colors"
                   >
                     View on GitHub

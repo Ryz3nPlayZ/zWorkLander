@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { track } from "@vercel/analytics";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,6 +130,7 @@ export function DownloadSection() {
                   <a
                     href={p.url}
                     download
+                    onClick={() => track('download_click', { platform: p.label })}
                     className="inline-flex items-center px-6 py-3 text-[13px] font-semibold bg-[#f7f6f3] text-[#171716] hover:bg-white transition-colors"
                   >
                     {p.cta}
@@ -148,6 +150,7 @@ export function DownloadSection() {
             href="https://github.com/Ryz3nPlayZ/zWork/releases"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track('github_releases_click')}
             className="text-[13px] text-[#a09e98] hover:text-[#f7f6f3] transition-colors"
           >
             View all releases on GitHub

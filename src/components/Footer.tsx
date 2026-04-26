@@ -18,13 +18,14 @@ export function Footer() {
           <Link to="/changelog" className="hover:text-[#171716] transition-colors">
             Changelog
           </Link>
-          <a href="#" className="hover:text-[#171716] transition-colors">
+          <a href="#" aria-label="Read zWork documentation" className="hover:text-[#171716] transition-colors">
             Documentation
           </a>
           <a
             href="https://github.com/Ryz3nPlayZ/zWork"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View zWork source code on GitHub"
             className="hover:text-[#171716] transition-colors"
           >
             GitHub

@@ -17,8 +17,8 @@ export function TopBar({ visible }: { visible: boolean }) {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-[#6b6a65]">
-          <Link to="/download" className={`hover:text-[#171716] transition-colors ${page === "/download" ? "text-[#171716]" : ""}`}>Download</Link>
-          <Link to="/pricing" className={`hover:text-[#171716] transition-colors ${page === "/pricing" ? "text-[#171716]" : ""}`}>Pricing</Link>
+          <Link to="/download" aria-label="Go to download page" className={`hover:text-[#171716] transition-colors ${page === "/download" ? "text-[#171716]" : ""}`}>Download</Link>
+          <Link to="/pricing" aria-label="Go to pricing page" className={`hover:text-[#171716] transition-colors ${page === "/pricing" ? "text-[#171716]" : ""}`}>Pricing</Link>
         </nav>
         <Link
           to="/download"
