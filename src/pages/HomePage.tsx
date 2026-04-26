@@ -233,21 +233,6 @@ export default function HomePage() {
 
   return (
     <div className="relative">
-      {/* Sticky download CTA bar */}
-      <div className={`fixed top-0 left-0 right-0 z-50 border-b border-[#e6e3dc] bg-[#f7f6f3] transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
-          <span className="text-[12px] text-[#6b6a65]">
-            Ready to get to work?
-          </span>
-          <Link
-            to="/download"
-            className="text-[12px] font-semibold text-[#171716] hover:text-[#6b6a65] transition-colors"
-          >
-            Download zWork →
-          </Link>
-        </div>
-      </div>
-
       {/* HERO SECTION */}
       <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
         {/* Dark layer */}
@@ -390,6 +375,21 @@ export default function HomePage() {
       <div ref={sentinelRef} className="h-[1px]" />
 
       <TopBar visible={showNav} />
+
+      {/* Subtle download CTA bar */}
+      <div className="border-b border-[#e6e3dc] bg-[#f7f6f3] sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
+          <span className="text-[12px] text-[#6b6a65]">
+            Ready to get to work?
+          </span>
+          <Link
+            to="/download"
+            className="text-[12px] font-semibold text-[#171716] hover:text-[#6b6a65] transition-colors"
+          >
+            Download zWork →
+          </Link>
+        </div>
+      </div>
 
       <Footer />
     </div>
