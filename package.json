@@ -2,11 +2,28 @@
   "name": "zwork-landing",
   "private": true,
   "version": "1.0.0",
+  "description": "A modern, responsive landing page built with React, TypeScript, and Tailwind CSS v4",
   "type": "module",
+  "author": "zWorkLander",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ryz3nPlayZ/zWorkLander"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwindcss",
+    "vite",
+    "landing-page",
+    "gsap",
+    "animation"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
