@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check } from "lucide-react";
-import { track } from "@vercel/analytics";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,7 +130,6 @@ export function PricingSection() {
 
               <a
                 href={tier.ctaLink}
-                onClick={() => track('pricing_cta_click', { tier: tier.name })}
                 className="inline-flex items-center justify-center w-full px-6 py-3 text-[14px] font-semibold bg-[#171716] text-[#f7f6f3] hover:bg-[#f7f6f3] hover:text-[#171716] group-hover:bg-[#f7f6f3] group-hover:text-[#171716] transition-colors duration-300"
               >
                 {tier.cta}
