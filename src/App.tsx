@@ -5,6 +5,11 @@ import DownloadPage from "./pages/DownloadPage";
 import PricingPage from "./pages/PricingPage";
 import FeaturesPage from "./pages/FeaturesPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import AdminMetricsPage from "./pages/admin/AdminMetricsPage";
+import AdminUsersPage from "./pages/admin/AdminUsersPage";
+import AdminUsagePage from "./pages/admin/AdminUsagePage";
+import AdminBillingPage from "./pages/admin/AdminBillingPage";
+import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 
 export default function App() {
   return (
@@ -15,6 +20,11 @@ export default function App() {
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/features" element={<FeaturesPage />} />
       <Route path="/changelog" element={<ChangelogPage />} />
+      {/* Admin Dashboard Routes */}
+      <Route path="/admin" element={<ProtectedAdminRoute element={<AdminMetricsPage />} />} />
+      <Route path="/admin/users" element={<ProtectedAdminRoute element={<AdminUsersPage />} />} />
+      <Route path="/admin/usage" element={<ProtectedAdminRoute element={<AdminUsagePage />} />} />
+      <Route path="/admin/billing" element={<ProtectedAdminRoute element={<AdminBillingPage />} />} />
     </Routes>
   );
 }
