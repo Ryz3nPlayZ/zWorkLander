@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-const API_BASE = (import.meta as any).env.VITE_API_URL || "https://api.tryzwork.app";
-const AUTH_BASE = "https://api.tryzwork.app/api/auth";
+import { adminAPI } from "../utils/api";
 
 interface AdminUser {
   email: string;
@@ -22,47 +19,36 @@ export function useAdminAuth() {
 
   const checkAdminAuth = async () => {
     try {
-      // Check if user has an active session via Better Auth
-      const sessionRes = await axios.get(`${AUTH_BASE}/session`, {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      // Check if token exists in localStorage
+      const token = localStorage.getItem("admin_token");
+      const email = localStorage.getItem("admin_email");
 
-      if (sessionRes.data && sessionRes.data.user) {
-        const user = sessionRes.data.user;
-        setAdminUser({
-          email: user.email,
-          name: user.name || user.email,
-          tier: "admin",
-        });
-
-        // Try to verify they can access admin endpoints
-        try {
-          await axios.get(`${API_BASE}/api/admin/metrics/overview`, {
-            withCredentials: true,
-            headers: { "Content-Type": "application/json" },
-          });
-          setIsAdmin(true);
-        } catch (err: any) {
-          if (err.response?.status === 401 || err.response?.status === 403) {
-            setIsAdmin(false);
-            setError("Unauthorized: You don't have admin access");
-          } else {
-            // Network error but authenticated - allow access
-            setIsAdmin(true);
-          }
-        }
-      } else {
+      if (!token || !email) {
         setIsAdmin(false);
         setError("Not authenticated");
+        setLoading(false);
+        return;
+      }
+
+      // Verify token is valid by calling an admin endpoint
+      try {
+        await adminAPI.get("/api/admin/metrics/overview");
+        setIsAdmin(true);
+        setAdminUser({
+          email: email,
+          name: email.split("@")[0],
+          tier: "admin",
+        });
+      } catch (err: any) {
+        // Token invalid or expired
+        localStorage.removeItem("admin_token");
+        localStorage.removeItem("admin_email");
+        setIsAdmin(false);
+        setError("Session expired");
       }
     } catch (err: any) {
       setIsAdmin(false);
-      if (err.response?.status === 401) {
-        setError("Not authenticated");
-      } else {
-        setError("Failed to check authentication");
-      }
+      setError("Auth check failed");
     } finally {
       setLoading(false);
     }
