@@ -11,6 +11,7 @@ export default function AdminLoginPage() {
   const [step, setStep] = useState<"email" | "verify">("email");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [generatedCode, setGeneratedCode] = useState<string | null>(null);
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ export default function AdminLoginPage() {
     try {
       const response = await axios.post(`${API_BASE}/api/admin/auth/send-code`, { email });
       if (response.status === 200) {
+        setGeneratedCode(response.data.code);
         setStep("verify");
       }
     } catch (err: any) {
@@ -101,6 +103,12 @@ export default function AdminLoginPage() {
                 />
               </div>
 
+              {generatedCode && (
+                <div className="bg-blue-500/10 border border-blue-500/30 rounded p-2 text-xs text-blue-300">
+                  Test code: {generatedCode}
+                </div>
+              )}
+
               {error && <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded p-2">{error}</div>}
 
               <button
@@ -117,6 +125,7 @@ export default function AdminLoginPage() {
                   setStep("email");
                   setCode("");
                   setError(null);
+                  setGeneratedCode(null);
                 }}
                 className="w-full text-slate-400 hover:text-slate-300 text-sm py-2"
               >
