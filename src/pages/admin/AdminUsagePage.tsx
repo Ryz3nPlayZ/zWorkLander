@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import AdminLayout from "../../components/admin/AdminLayout";
+import { adminAPI } from "../../utils/api";
 
-const API_BASE = (import.meta as any).env.VITE_API_URL || "https://api.tryzwork.app";
 const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
 
 interface UsageByTime {
@@ -32,8 +31,8 @@ export default function AdminUsagePage() {
   const fetchUsageData = async () => {
     try {
       const [timeRes, modelRes] = await Promise.all([
-        axios.get(`${API_BASE}/api/admin/usage/by-time`),
-        axios.get(`${API_BASE}/api/admin/usage/by-model`),
+        adminAPI.get("/api/admin/usage/by-time"),
+        adminAPI.get("/api/admin/usage/by-model"),
       ]);
       setUsageByTime(timeRes.data.reverse());
       setUsageByModel(modelRes.data);

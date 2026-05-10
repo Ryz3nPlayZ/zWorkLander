@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import AdminLayout from "../../components/admin/AdminLayout";
-
-const API_BASE = (import.meta as any).env.VITE_API_URL || "https://api.tryzwork.app";
+import { adminAPI } from "../../utils/api";
 
 interface AdminUser {
   user_id: string;
@@ -33,7 +31,7 @@ export default function AdminUsersPage() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/admin/users`);
+      const response = await adminAPI.get("/api/admin/users");
       setUsers(response.data);
     } catch (err) {
       setError("Failed to load users");
@@ -46,7 +44,7 @@ export default function AdminUsersPage() {
   const updateUserTier = async () => {
     if (!selectedUser || !newTier) return;
     try {
-      await axios.put(`${API_BASE}/api/admin/users/${selectedUser.user_id}/tier`, { tier: newTier });
+      await adminAPI.put(`/api/admin/users/${selectedUser.user_id}/tier`, { tier: newTier });
       setShowUpdateTier(false);
       setSelectedUser(null);
       fetchUsers();

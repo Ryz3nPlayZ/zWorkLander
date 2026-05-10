@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Users, TrendingUp, DollarSign, Percent } from "lucide-react";
 import AdminLayout from "../../components/admin/AdminLayout";
-
-const API_BASE = (import.meta as any).env.VITE_API_URL || "https://api.tryzwork.app";
+import { adminAPI } from "../../utils/api";
 
 interface MetricsOverview {
   total_users: number;
@@ -29,7 +27,7 @@ export default function AdminMetricsPage() {
 
   const fetchMetrics = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/admin/metrics/overview`);
+      const response = await adminAPI.get("/api/admin/metrics/overview");
       setMetrics(response.data);
     } catch (err) {
       setError("Failed to load metrics");
