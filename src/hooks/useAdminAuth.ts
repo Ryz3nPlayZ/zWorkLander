@@ -21,9 +21,7 @@ export function useAdminAuth() {
   const checkAdminAuth = async () => {
     try {
       // For now, just check if the metrics endpoint is accessible
-      await axios.get(`${API_BASE}/api/admin/metrics/overview`, {
-        withCredentials: true,
-      });
+      await axios.get(`${API_BASE}/api/admin/metrics/overview`);
       
       setIsAdmin(true);
       setAdminUser({ email: "owner@example.com", name: "Owner", tier: "admin" });

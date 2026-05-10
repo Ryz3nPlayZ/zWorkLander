@@ -39,8 +39,7 @@ export default function AdminLoginPage() {
     try {
       const response = await axios.post(
         `${API_BASE}/api/admin/auth/verify-code`,
-        { email, code },
-        { withCredentials: true }
+        { email, code }
       );
       if (response.status === 200) {
         navigate("/admin");

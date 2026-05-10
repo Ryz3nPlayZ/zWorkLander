@@ -29,9 +29,7 @@ export default function AdminMetricsPage() {
 
   const fetchMetrics = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/admin/metrics/overview`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(`${API_BASE}/api/admin/metrics/overview`);
       setMetrics(response.data);
     } catch (err) {
       setError("Failed to load metrics");

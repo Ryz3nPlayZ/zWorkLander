@@ -32,8 +32,8 @@ export default function AdminUsagePage() {
   const fetchUsageData = async () => {
     try {
       const [timeRes, modelRes] = await Promise.all([
-        axios.get(`${API_BASE}/api/admin/usage/by-time`, { withCredentials: true }),
-        axios.get(`${API_BASE}/api/admin/usage/by-model`, { withCredentials: true }),
+        axios.get(`${API_BASE}/api/admin/usage/by-time`),
+        axios.get(`${API_BASE}/api/admin/usage/by-model`),
       ]);
       setUsageByTime(timeRes.data.reverse());
       setUsageByModel(modelRes.data);
