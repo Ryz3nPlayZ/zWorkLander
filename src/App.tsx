@@ -24,6 +24,7 @@ export default function App() {
       {/* Admin Dashboard Routes */}
       <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin" element={<ProtectedAdminRoute element={<AdminMetricsPage />} />} />
+      <Route path="/admin/metrics" element={<ProtectedAdminRoute element={<AdminMetricsPage />} />} />
       <Route path="/admin/users" element={<ProtectedAdminRoute element={<AdminUsersPage />} />} />
       <Route path="/admin/usage" element={<ProtectedAdminRoute element={<AdminUsagePage />} />} />
       <Route path="/admin/billing" element={<ProtectedAdminRoute element={<AdminBillingPage />} />} />
