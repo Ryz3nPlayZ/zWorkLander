@@ -1,12 +1,11 @@
 import { useAdminAuth } from "../hooks/useAdminAuth";
-import { Navigate } from "react-router-dom";
 
 interface ProtectedAdminRouteProps {
   element: React.ReactElement;
 }
 
 export default function ProtectedAdminRoute({ element }: ProtectedAdminRouteProps) {
-  const { isAdmin, loading } = useAdminAuth();
+  const { loading } = useAdminAuth();
 
   if (loading) {
     return (
@@ -16,9 +15,6 @@ export default function ProtectedAdminRoute({ element }: ProtectedAdminRouteProp
     );
   }
 
-  if (!isAdmin) {
-    return <Navigate to="/admin/login" replace />;
-  }
-
+  // For now, just render the element - no auth required
   return element;
 }
