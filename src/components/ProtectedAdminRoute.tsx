@@ -1,11 +1,12 @@
 import { useAdminAuth } from "../hooks/useAdminAuth";
+import { Navigate } from "react-router-dom";
 
 interface ProtectedAdminRouteProps {
   element: React.ReactElement;
 }
 
 export default function ProtectedAdminRoute({ element }: ProtectedAdminRouteProps) {
-  const { isAdmin, loading, error } = useAdminAuth();
+  const { isAdmin, loading } = useAdminAuth();
 
   if (loading) {
     return (
@@ -15,18 +16,8 @@ export default function ProtectedAdminRoute({ element }: ProtectedAdminRouteProp
     );
   }
 
-  if (error || !isAdmin) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
-          <p className="text-gray-400 mb-6">{error || "Admin access required"}</p>
-          <a href="/" className="text-blue-400 hover:text-blue-300">
-            Return to Home
-          </a>
-        </div>
-      </div>
-    );
+  if (!isAdmin) {
+    return <Navigate to="/admin/login" replace />;
   }
 
   return element;
