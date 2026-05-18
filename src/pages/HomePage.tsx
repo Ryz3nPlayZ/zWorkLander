@@ -179,25 +179,25 @@ export default function HomePage() {
             className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-[#171716] mb-3"
             style={serif}
           >
-            Free forever.<br />Cloud when you want it.
+            Start free.<br />Scale when you're ready.
           </h2>
           <p className="text-lg text-[#6b6a65] max-w-xl mb-12">
-            Self-host with your own API key for free, or let zWork Cloud handle everything for a flat monthly fee.
+            Self-host for free with your own API key, or upgrade to Cloud for a managed experience.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-            {/* Self-hosted */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+            {/* Free */}
             <div className="rounded-2xl border border-[#e6e3dc] bg-[#f7f6f3] p-8">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a09e98] mb-2">Self-hosted</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a09e98] mb-2">Free</div>
               <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-4xl font-semibold tracking-tight text-[#171716]">Free</span>
-                <span className="text-[13px] text-[#6b6a65]">forever · open source</span>
+                <span className="text-4xl font-semibold tracking-tight text-[#171716]">$0</span>
+                <span className="text-[13px] text-[#6b6a65]">forever · self-hosted</span>
               </div>
               <ul className="space-y-3 mb-8">
                 <CheckItem text="Full agent capabilities" />
                 <CheckItem text="Bring your own API key" />
                 <CheckItem text="All integrations included" />
-                <CheckItem text="Private, runs on your machine" />
+                <CheckItem text="Private, runs locally" />
                 <CheckItem text="Community support" />
               </ul>
               <a
@@ -208,16 +208,19 @@ export default function HomePage() {
               </a>
             </div>
 
-            {/* Cloud */}
-            <div className="rounded-2xl border border-[#e6e3dc] bg-[#171716] p-8">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a09e98] mb-2">zWork Cloud</div>
+            {/* Pro */}
+            <div className="rounded-2xl border-2 border-[#171716] bg-[#171716] p-8 relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#171716] text-[#f7f6f3] text-[10px] font-semibold uppercase tracking-[0.15em] px-3 py-1 rounded-full">
+                Most popular
+              </div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a09e98] mb-2">Pro</div>
               <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-4xl font-semibold tracking-tight text-[#f7f6f3]">$9</span>
-                <span className="text-[13px] text-[#a09e98]">per month · no API key needed</span>
+                <span className="text-4xl font-semibold tracking-tight text-[#f7f6f3]">$12</span>
+                <span className="text-[13px] text-[#a09e98]">per month</span>
               </div>
               <ul className="space-y-3 mb-8">
-                <CheckItemLight text="Everything in self-hosted" />
-                <CheckItemLight text="We handle the API key" />
+                <CheckItemLight text="Everything in Free" />
+                <CheckItemLight text="No API key needed" />
                 <CheckItemLight text="Cloud sync across devices" />
                 <CheckItemLight text="Persistent memory" />
                 <CheckItemLight text="Priority support" />
@@ -227,6 +230,28 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 rounded-full bg-[#f7f6f3] px-5 py-2.5 text-[13px] font-semibold text-[#171716] hover:bg-white transition-colors"
               >
                 Join the waitlist
+              </a>
+            </div>
+
+            {/* Team */}
+            <div className="rounded-2xl border border-[#e6e3dc] bg-[#f7f6f3] p-8">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a09e98] mb-2">Team</div>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="text-4xl font-semibold tracking-tight text-[#171716]">$40</span>
+                <span className="text-[13px] text-[#6b6a65]">per month · per seat</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <CheckItem text="Everything in Pro" />
+                <CheckItem text="Team workspace & sharing" />
+                <CheckItem text="Admin controls & roles" />
+                <CheckItem text="Usage analytics dashboard" />
+                <CheckItem text="Dedicated support channel" />
+              </ul>
+              <a
+                href="mailto:hello@zwork.ai"
+                className="inline-flex items-center gap-2 rounded-full bg-[#171716] px-5 py-2.5 text-[13px] font-semibold text-[#f7f6f3] hover:bg-[#25241f] transition-colors"
+              >
+                Contact us
               </a>
             </div>
           </div>

@@ -18,9 +18,6 @@ export function Footer() {
           <Link to="/changelog" className="hover:text-[#171716] transition-colors">
             Changelog
           </Link>
-          <a href="#" aria-label="Read zWork documentation" className="hover:text-[#171716] transition-colors">
-            Documentation
-          </a>
           <a
             href="https://github.com/Ryz3nPlayZ/zWork"
             target="_blank"
@@ -30,9 +27,15 @@ export function Footer() {
           >
             GitHub
           </a>
-          <a href="#" className="hover:text-[#171716] transition-colors">
+          <Link to="/privacy" className="hover:text-[#171716] transition-colors">
             Privacy
-          </a>
+          </Link>
+          <Link to="/terms" className="hover:text-[#171716] transition-colors">
+            Terms
+          </Link>
+          <Link to="/refund" className="hover:text-[#171716] transition-colors">
+            Refund Policy
+          </Link>
         </div>
         <div className="text-[11.5px] text-[#a09e98]">
           &copy; 2026 zWork

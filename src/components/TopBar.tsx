@@ -19,7 +19,7 @@ export function TopBar({ visible }: { visible?: boolean }) {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-[#6b6a65]">
-          <Link to="/motion" className={`hover:text-[#171716] transition-colors ${page === "/motion" ? "text-[#171716]" : ""}`}>Motion</Link>
+          <Link to="/features" className={`hover:text-[#171716] transition-colors ${page === "/features" ? "text-[#171716]" : ""}`}>Features</Link>
           <Link to="/download" className={`hover:text-[#171716] transition-colors ${page === "/download" ? "text-[#171716]" : ""}`}>Download</Link>
           <Link to="/pricing" className={`hover:text-[#171716] transition-colors ${page === "/pricing" ? "text-[#171716]" : ""}`}>Pricing</Link>
         </nav>

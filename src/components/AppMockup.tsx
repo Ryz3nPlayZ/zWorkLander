@@ -87,7 +87,7 @@ export function AppMockup() {
             {/* Greeting */}
             <div className="flex-1 flex flex-col items-center justify-center px-6">
               <h2 className="text-center text-[28px] md:text-[34px] font-light leading-tight tracking-tight text-[#171716]" style={{ fontFamily: "var(--font-serif)" }}>
-                Good afternoon, <span className="italic text-[#6b6a65]">Zemu</span>.
+                Good afternoon, <span className="italic text-[#6b6a65]">there</span>.
               </h2>
 
               {/* Chat input */}

@@ -11,6 +11,9 @@ import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import AdminUsagePage from "./pages/admin/AdminUsagePage";
 import AdminBillingPage from "./pages/admin/AdminBillingPage";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import RefundPage from "./pages/RefundPage";
 
 export default function App() {
   return (
@@ -28,6 +31,10 @@ export default function App() {
       <Route path="/admin/users" element={<ProtectedAdminRoute element={<AdminUsersPage />} />} />
       <Route path="/admin/usage" element={<ProtectedAdminRoute element={<AdminUsagePage />} />} />
       <Route path="/admin/billing" element={<ProtectedAdminRoute element={<AdminBillingPage />} />} />
+      {/* Legal Pages */}
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/refund" element={<RefundPage />} />
     </Routes>
   );
 }

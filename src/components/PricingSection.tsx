@@ -11,45 +11,47 @@ const tiers = [
   {
     name: "Free",
     price: "$0",
-    subtitle: "Forever. No credit card.",
+    period: "forever · self-hosted",
     features: [
-      "An AI that reads your code but never your diary",
-      "Local execution — your secrets stay in your basement",
-      "BYOK: Bring Your Own Keys (and leftover pizza)",
-      "All the skills, none of the talent required",
-      "One device. Your mom's iPad is not invited.",
+      "Full agent capabilities",
+      "Bring your own API key",
+      "All integrations included",
+      "Private, runs locally on your machine",
+      "Community support",
     ],
     cta: "Download",
     ctaLink: "/download",
+    highlight: false,
   },
   {
-    name: "Free+",
-    price: "$0",
-    subtitle: "Also forever. Seriously.",
+    name: "Pro",
+    price: "$12",
+    period: "per month",
     features: [
-      "Everything in Free, plus extra existential dread",
-      "Unlimited devices because you hoard electronics",
-      "Custom skill marketplace (it's just you and a JSON file)",
-      "Priority model access (3rd in line instead of 47th)",
-      "Team workspace for up to 5 people you pretend to like",
+      "Everything in Free",
+      "No API key needed",
+      "Cloud sync across devices",
+      "Persistent memory",
+      "Priority support",
     ],
-    cta: "Download",
-    ctaLink: "/download",
+    cta: "Join the waitlist",
+    ctaLink: "#",
+    highlight: true,
   },
   {
-    name: "Free Super",
-    price: "$0",
-    subtitle: "We are not kidding.",
+    name: "Team",
+    price: "$40",
+    period: "per month · per seat",
     features: [
-      "Everything in Free+, plus a false sense of superiority",
-      "Unlimited team members (good luck managing that)",
-      "Self-hosted server option (for your inner sysadmin)",
-      "Enterprise audit logs that no human will ever read",
-      "Dedicated support channel (it's mostly memes)",
-      "A holographic sticker (this is the real value prop)",
+      "Everything in Pro",
+      "Team workspace & sharing",
+      "Admin controls & roles",
+      "Usage analytics dashboard",
+      "Dedicated support channel",
     ],
-    cta: "Download",
-    ctaLink: "/download",
+    cta: "Contact us",
+    ctaLink: "mailto:hello@zwork.ai",
+    highlight: false,
   },
 ];
 
@@ -97,7 +99,7 @@ export function PricingSection() {
             Pricing
           </h2>
           <p className="mt-5 text-lg md:text-xl text-[#6b6a65] max-w-xl mx-auto">
-            We could not think of a reason to charge you.
+            Start free with your own API key, or upgrade to Cloud for a managed experience.
           </p>
         </div>
 
@@ -106,23 +108,44 @@ export function PricingSection() {
             <div
               key={tier.name}
               ref={(el) => { cardsRef.current[i] = el; }}
-              className="group relative border border-[#e6e3dc] bg-white p-10 md:p-12 text-center flex flex-col transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-[#171716] hover:border-[#171716] hover:shadow-2xl"
+              className={`group relative p-10 md:p-12 text-center flex flex-col ${
+                tier.highlight
+                  ? "border-2 border-[#171716] bg-[#171716] text-[#f7f6f3]"
+                  : "border border-[#e6e3dc] bg-white text-[#171716]"
+              }`}
             >
+              {tier.highlight && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#f7f6f3] text-[#171716] text-[10px] font-semibold uppercase tracking-[0.15em] px-3 py-1 rounded-full">
+                  Most popular
+                </div>
+              )}
               <h3
-                className="text-3xl md:text-4xl font-semibold tracking-tight text-[#171716] mb-2 group-hover:text-[#f7f6f3] transition-colors duration-300"
+                className={`text-3xl md:text-4xl font-semibold tracking-tight mb-2 ${
+                  tier.highlight ? "text-[#f7f6f3]" : "text-[#171716]"
+                }`}
                 style={serif}
               >
                 {tier.name}
               </h3>
-              <div className="text-4xl font-semibold text-[#171716] mb-1 group-hover:text-[#f7f6f3] transition-colors duration-300">
+              <div className={`text-4xl font-semibold mb-1 ${tier.highlight ? "text-[#f7f6f3]" : "text-[#171716]"}`}>
                 {tier.price}
               </div>
-              <p className="text-[13px] text-[#a09e98] mb-6">{tier.subtitle}</p>
+              <p className="text-[13px] text-[#a09e98] mb-6">{tier.period}</p>
 
               <ul className="space-y-2 text-left mb-6 flex-1">
                 {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-[14px] text-[#171716] group-hover:text-[#f7f6f3] transition-colors duration-300">
-                    <Check className="h-4 w-4 text-[#6b6a65] mt-0.5 shrink-0 group-hover:text-[#f7f6f3] transition-colors duration-300" strokeWidth={2} />
+                  <li
+                    key={f}
+                    className={`flex items-start gap-3 text-[14px] ${
+                      tier.highlight ? "text-[#f7f6f3]" : "text-[#171716]"
+                    }`}
+                  >
+                    <Check
+                      className={`h-4 w-4 mt-0.5 shrink-0 ${
+                        tier.highlight ? "text-emerald-400" : "text-[#6b6a65]"
+                      }`}
+                      strokeWidth={2}
+                    />
                     <span>{f}</span>
                   </li>
                 ))}
@@ -130,7 +153,11 @@ export function PricingSection() {
 
               <a
                 href={tier.ctaLink}
-                className="inline-flex items-center justify-center w-full px-6 py-3 text-[14px] font-semibold bg-[#171716] text-[#f7f6f3] hover:bg-[#f7f6f3] hover:text-[#171716] group-hover:bg-[#f7f6f3] group-hover:text-[#171716] transition-colors duration-300"
+                className={`inline-flex items-center justify-center w-full px-6 py-3 text-[14px] font-semibold transition-colors ${
+                  tier.highlight
+                    ? "bg-[#f7f6f3] text-[#171716] hover:bg-white"
+                    : "bg-[#171716] text-[#f7f6f3] hover:bg-[#25241f]"
+                }`}
               >
                 {tier.cta}
               </a>
